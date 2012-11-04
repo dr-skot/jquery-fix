@@ -4,9 +4,8 @@ Simple jQuery plugin for fixing/unfixing the position of DOM elements.
 
 ## Installation
 
-Include script after the jQuery library:
-
 ```html
+<script src="/path/to/jquery.js"></script>
 <script src="/path/to/jquery-fix.js"></script>
 ```
 
@@ -45,7 +44,7 @@ See `example.html`
 
 ## Under the hood
 
-Basically `fix` just sets css `position` to `'fixed'` and `top` to where the element's top is. But this pulls the element out of the document flow; to prevent reflowing, `fix` inserts an invisible placeholder just before itself in the DOM. When you `unfix`, it hides but does not remove this placeholder. So when you're traversing the DOM keep in mind that this placeholder will be there if you've called `fix` (or `unfix`). It's assigned a class of `fix-placeholder`, so you can easily exclude it from your selectors if you need to.
+Basically `fix` just sets css `position` to `'fixed'` and `top` to where the element's top is. But this pulls the element out of the document flow; to prevent reflowing, `fix` inserts a blank placeholder in the DOM, just before the element being fixed. When you `unfix`, it hides but does not remove this placeholder. So when you're traversing the DOM keep in mind that this placeholder will be there if you've called `fix` (or `unfix`). It's assigned a class of `fix-placeholder`, so you can easily exclude it from your selectors if you need to.
 
 `fix` stores data in `$(element).data('fix')`. If you don't want to break it, don't mess with this data.
 
