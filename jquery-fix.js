@@ -18,7 +18,7 @@
 	    var $this = $(this)
 	    var data = $this.data('fix')
 	    if (!data) {
-		var placeholder = $('<div style="width:100%; display:none"/>');
+		var placeholder = $('<div class=".fix-placeholder" style="width:100%; display:none"/>');
 		placeholder.insertBefore($this);
 		data = { fixed: false, placeholder: placeholder };
 		$this.data('fix', data)
