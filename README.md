@@ -32,6 +32,7 @@ $('.fixable').unfix()
 ```
 
 Toggle it.
+
 ```javascript
 $('.fixable').fix('toggle')
 ```
@@ -40,7 +41,7 @@ $('.fixable').fix('toggle')
 
 ## Example
 
-[example.html](https://github.com/dr-skot/jquery-fix.js/blob/master/example.html)
+[example.html](https://github.com/dr-skot/jquery-fix/blob/master/example.html)
 
 ## Under the hood
 
