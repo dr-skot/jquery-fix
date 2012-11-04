@@ -11,7 +11,7 @@ Simple jQuery plugin for fixing/unfixing the position of DOM elements.
 
 ## Usage
 
-Make a div
+Make a div.
 
 ```html
 <div class="fixable">
@@ -36,11 +36,11 @@ Toggle it.
 $('.fixable').fix('toggle')
 ```
 
-`fix` can also take a boolean value; `fix(true)` is the same as `fix()`, and `fix(false)` is equivalent to `unfix()`.
+`fix` can also take a boolean value; `fix(true)` is the same as `fix()`, and `fix(false)` is the same as `unfix()`.
 
 ## Example
 
-See `example.html`
+[example.html](https://github.com/dr-skot/jquery-fix.js/blob/master/example.html)
 
 ## Under the hood
 
