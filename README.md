@@ -6,7 +6,7 @@ Simple jQuery plugin for fixing/unfixing the position of DOM elements.
 
 ```html
 <script src="/path/to/jquery.js"></script>
-<script src="/path/to/jquery-fix.js"></script>
+<script src="/path/to/jquery.fix.js"></script>
 ```
 
 ## Usage
