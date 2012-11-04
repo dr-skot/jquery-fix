@@ -37,7 +37,7 @@ Toggle it.
 $('.fixable').fix('toggle')
 ```
 
-`fix` can also take a boolean value; `fix(true)` is the same as `fix()`, and `fix(false)` is the same as `unfix()`.
+`fix` can also take a boolean value; `fix(true)` is the same as `fix()`, and `fix(false)` is the same as `unfix()`. Any argument besides `'toggle'` is evaluated as a boolean.
 
 ## Example
 
