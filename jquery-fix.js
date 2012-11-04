@@ -52,7 +52,7 @@
 	})
     },
 
-    toggleFix : function() { 
+    toggle : function() { 
 	return this.each(function() {
 	    var $this = $(this);
 	    var data = $this.data('fix');
@@ -63,16 +63,22 @@
   };
 
   $.fn.fix = function() {
-
-      // first initialize
       methods['init'].apply(this);
 
-      // default action is toggle fix
-      if (arguments.length == 0) return methods['toggleFix'].apply(this);
+      // default action is fix
+      if (arguments.length == 0) return methods['fix'].apply(this);
+
+      // toggle if first argument is 'toggle'
+      if (arguments[0] === 'toggle') methods['toggle'].apply(this);
       
       // otherwise fix or unfix depending on boolean value of arg 1
       else return methods[arguments[0] ? 'fix' : 'unfix'].apply(this);
       
+  };
+
+  // convenience synonym for fix(false)
+  $.fn.unfix = function() {
+      return this.fix(false);
   };
 
 })( jQuery );

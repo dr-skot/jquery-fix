@@ -1,24 +1,22 @@
 <html>
 <head>
   <style>
-    .first-thing {
+    .first {
       width: 100%;
       height: 50px;
       background: red;
     }
-    .second-thing {
+    .second {
      width: 100%;
      height: 30px;
      background: green;
-    }
-    .other-stuff {
     }
 </style>
 
 <script src="jquery.js"></script>
 <script type="text/javascript" src="jquery-fix.js"></script>
 <script>
-  function fixit() {
+  function fixBoth() {
      $('.first-thing').fix()
      $('.second-thing').fix()
   }
@@ -28,73 +26,75 @@
 
 
 <body>
-<div class="first-thing">
-first thing <button onclick="fixit()">fix</button>
+<div class="first fixable">
+  first thing
+  <button onclick="$(this).parent().fix()">fix</button>
+  <button onclick="$(this).parent().unfix()">unfix</button>
+  <button onclick="$(this).parent().fix('toggle')">toggle</button>
 </div>
-<div class="second-thing">
-second thing
+<div class="second fixable">
+  both things
+  <button onclick="$('.fixable').fix(true)">fix</button>
+  <button onclick="$('.fixable').fix(false)">unfix</button>
+  <button onclick="$('.fixable').fix('toggle')">toggle</button>
 </div>
 <div class="other-stuff">
-other stuff<br/>
-other stuff<br/>
-other stuff<br/>
-other stuff<br/>
-other stuff<br/>
-other stuff<br/>
-other stuff<br/>
-other stuff<br/>
-other stuff<br/>
-other stuff<br/>
-other stuff<br/>
-other stuff<br/>
-other stuff<br/>
-other stuff<br/>
-other stuff<br/>
-other stuff<br/>
-other stuff<br/>
-other stuff<br/>
-other stuff<br/>
-other stuff<br/>
-other stuff<br/>
-other stuff<br/>
-other stuff<br/>
-other stuff<br/>
-other stuff<br/>
-other stuff<br/>
-other stuff<br/>
-other stuff<br/>
-other stuff<br/>
-other stuff<br/>
-other stuff<br/>
-other stuff<br/>
-other stuff<br/>
-other stuff<br/>
-other stuff<br/>
-other stuff<br/>
-other stuff<br/>
-other stuff<br/>
-other stuff<br/>
-other stuff<br/>
-other stuff<br/>
-other stuff<br/>
-other stuff<br/>
-other stuff<br/>
-other stuff<br/>
-other stuff<br/>
-other stuff<br/>
-other stuff<br/>
-other stuff<br/>
-other stuff<br/>
-other stuff<br/>
-other stuff<br/>
-other stuff<br/>
-other stuff<br/>
-other stuff<br/>
-other stuff<br/>
-other stuff<br/>
-other stuff<br/>
-other stuff<br/>
-other stuff<br/>
+scrollable stuff<br/>
+scrollable stuff<br/>
+scrollable stuff<br/>
+scrollable stuff<br/>
+scrollable stuff<br/>
+scrollable stuff<br/>
+scrollable stuff<br/>
+scrollable stuff<br/>
+scrollable stuff<br/>
+scrollable stuff<br/>
+scrollable stuff<br/>
+scrollable stuff<br/>
+scrollable stuff<br/>
+scrollable stuff<br/>
+scrollable stuff<br/>
+scrollable stuff<br/>
+scrollable stuff<br/>
+scrollable stuff<br/>
+scrollable stuff<br/>
+scrollable stuff<br/>
+scrollable stuff<br/>
+scrollable stuff<br/>
+scrollable stuff<br/>
+scrollable stuff<br/>
+scrollable stuff<br/>
+scrollable stuff<br/>
+scrollable stuff<br/>
+scrollable stuff<br/>
+scrollable stuff<br/>
+scrollable stuff<br/>
+scrollable stuff<br/>
+scrollable stuff<br/>
+scrollable stuff<br/>
+scrollable stuff<br/>
+scrollable stuff<br/>
+scrollable stuff<br/>
+scrollable stuff<br/>
+scrollable stuff<br/>
+scrollable stuff<br/>
+scrollable stuff<br/>
+scrollable stuff<br/>
+scrollable stuff<br/>
+scrollable stuff<br/>
+scrollable stuff<br/>
+scrollable stuff<br/>
+scrollable stuff<br/>
+scrollable stuff<br/>
+scrollable stuff<br/>
+scrollable stuff<br/>
+scrollable stuff<br/>
+scrollable stuff<br/>
+scrollable stuff<br/>
+scrollable stuff<br/>
+scrollable stuff<br/>
+scrollable stuff<br/>
+scrollable stuff<br/>
 </div>
 </body>
 </html>
