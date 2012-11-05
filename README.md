@@ -51,7 +51,7 @@ Basically `fix` just sets css `position` to `'fixed'` and `top` to where the ele
 
 ## Issues
 
-Only sure this works with jQuery 1.3.2 right now.
+Some work left to do to make this work in all cases. Turns out it's not so straightforward to measure exactly how much room an element takes up in the document flow...
 
 ## Authors
 
