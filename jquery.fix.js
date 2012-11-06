@@ -33,30 +33,15 @@
 	    var $this = $(this);
 	    var data = $this.data('fix');
 	    if (!data.fixed) {
-		// KLUDGE ALERT: workaround for bottom margin weirdness.
-		// If you have a <div> whose last element is a <p>
-		// and the <p> has a bottom margin and the <div> doesn't,
-		// the <p>'s bottom margin will appear in the flow, but
-		// $(div).outerHeight() will not include this
-		// also, if you give the <div> a background color, it will fill to the bottom
-		// of the <p> but will not fill the <p>'s bottom margin!
-		// however, if you put a bottom border on the <div>, it will be drawn *below*
-		// the <p>'s bottom margin, and now $(div).outerHeight() includes everything
-		// (ie, both <p>'s bottom margin and the border width)!
-		// So the hack here is to add a border, get the outerHeight, then remove
-		// the border.
-		// TODO: insure that this doesn't break when element has a border already
-		$this.css('border', '1px solid white')
 		var css = {
 		    top: $this.offset().top, 
 		    left: $this.offset().left,
-		    width: $this.width()+2,
+		    width: $this.width(),
 		    height: $this.height(),
 		}
-		data.placeholder.width($this.outerWidth(true)-2) // true means include margins
-		data.placeholder.height($this.outerHeight(true)-2)
+		data.placeholder.width($this.outerWidth(true)) // true means include margins
+		data.placeholder.height($this.outerHeight(true))
 		$this.css(css);
-		$this.css('border', '')
 	    }
 	})
 	// then set the position to fixed
@@ -64,8 +49,7 @@
 	    var $this = $(this);
 	    var data = $this.data('fix');
 	    if (!data.fixed) {
-		// have to set margin to zero because offset includes margin
-		$this.css({ margin: 0, position: 'fixed' });
+		$this.css({ position: 'fixed' });
 		data.placeholder.show();
 		data.fixed = true;
 	    }
@@ -81,7 +65,7 @@
 		console.log($this)
 		console.log($this.position())
 		data.placeholder.hide();
-		$this.css({ top: '', left: '', width: '', height: '', margin: '', position: '' });
+		$this.css({ top: '', left: '', width: '', height: '', position: '' });
 		data.fixed = false;
 	    }
 	})

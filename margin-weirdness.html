@@ -1,0 +1,230 @@
+<html>
+<head>
+<script src="http://code.jquery.com/jquery-1.7.2.min.js"></script>
+<script src="jquery.fix.js"></script>
+
+<style>
+div {
+  margin: 0;
+}
+.first {
+  background: red;
+}
+.second {
+  background: green;
+}
+.third {
+  background: gray;
+}
+</style>
+
+<script>
+function toggleBorder(elem, which) {
+  style = which ? 'border-' + which : 'border'
+  $elem = $(elem)
+  $elem.unfix()
+  $elem.find('button.fix-button').text("fix")
+  var val = $elem.css(style, /1px/.test($elem.css(style)) ? '' : '1px solid black')
+  $elem.css(style, val);
+  updateHeights();
+}
+
+function updateHeights() {
+  $('div').each(function() {
+    $this = $(this);
+    $this.find('.div-height').text($this.height());
+    $this.find('.div-outer').text($this.outerHeight());
+    $this.find('.p-height').text($this.children('p').height());
+  });
+}
+
+function toggleFix(elem) {
+  $elem = $(elem);
+  $elem.fix('toggle');
+label = $elem.find('button.fix-button').text()
+  if (label) $elem.find('button.fix-button').text(label == "fix" ? "unfix" : "fix")
+  updateHeights();
+}
+
+$(document).ready(function() {
+  updateHeights();
+});
+</script>
+
+</head>
+
+<body>
+
+<div class="first fixable">
+  <p>
+div with p<br/>
+ div.height <span class="div-height"></span>,
+ div.outerHeight <span class="div-outer"></span>,
+ p.height <span class="p-height"></span><br />
+  <button onclick="toggleBorder($(this).parent().parent(), 'top');
+  return false">top border</button>
+  <button onclick="toggleBorder($(this).parent().parent(), 'bottom');
+    return false">bottom border</button>
+    <button class="fix-button" onclick="toggleFix($(this).parent().parent());">fix</button>
+  </p>
+</div>
+
+<div class="second fixable">
+<p>
+div with p<br/>
+ div.height <span class="div-height"></span>,
+ div.outerHeight <span class="div-outer"></span>,
+ p.height <span class="p-height"></span><br />
+  border:
+  <button onclick="toggleBorder($(this).parent().parent(), 'top');
+  return false">top border</button>
+  <button onclick="toggleBorder($(this).parent().parent(), 'bottom');
+  return false">bottom border</button>
+</p>
+</div>
+
+<div class="third">
+  div with no p
+</div>
+
+<h1>margin weirdness</h1>
+
+<p>
+The first two colored elements above are <code>&lt;div&gt;</code>s with <code>margin:0</code>.
+What's inside them are <code>&lt;p&gt;</code>s. The white space
+between the <code>div</code>s is caused by the margins on the
+<code>p</code>s.
+</p>
+
+<p>
+If you put a top or bottom border on the <code>div</code> it absorbs the
+corresponding margin of the <code>p</code>, but the white space remains
+until you also put a border on the neighboring <code>div</code>.
+</p>
+
+<p>
+The third (gray) element is another <code>div</code> but with
+no <code>p</code> in it. The white space above it closes up
+immediately when you put a border on the div above it.
+</p>
+
+<p>
+Note that the white space is the same size whether it represents the
+margin of one <code>p</code> element or the adjacent margins of
+two <code>p</code> elements. This is because 
+<a href="http://www.w3.org/TR/CSS21/box.html#collapsing-margins">adjacent
+  margins collapse</a>.
+</p>
+
+<p>
+All of this causes problems for <code>fix()</code>, as you can see by
+experimenting with the "fix" button above.
+</p>
+
+<p>
+Let's start with the red <code>div</code>. Put its top border
+on (and leave the green <code>div</code>'s borders off). Now press the
+"fix" button and scroll up. You should see the hoped-for
+behavior: the red stripe stays fixed while the rest of the page
+scrolls beneath it.
+</p>
+<p>
+Now turn the red <code>div</code>'s top border off (this also unfixes it)
+and press "fix" again. You'll see the contents of
+red jump down, because the red <code>p</code>'s
+collapsed top margin uncollapses when the red <code>div</code> is taken out of the
+document flow with <code>css('position', 'fixed')</code>.
+</p> 
+<p>
+You can make things worse by activating the top margin on the
+green <code>div</code>. Now not only do the red <code>div</code>'s
+contents drop down, but the green <code>div</code> (and all the page
+below it) jumps <em>up</em>. When the green <code>div</code> has a top border, the
+space between green and red is entirely provided by
+red's <code>p</code>, and when you take red out of the document flow
+by fixing it, this space naturally disappears.
+</p>
+
+<p>
+Such complications as these conspire to make a truly
+generalized <code>fix()</code> method a real headache to implement, or
+maybe even impossible. For now if you want to <code>fix()</code> something, you'll have
+to style it so that it doesn't introduce these kinds of margin problems.
+</p>
+
+<hr>
+
+<p>
+  More text so you can scroll
+</p>
+
+<p>
+  More text so you can scroll
+</p>
+
+<p>
+  More text so you can scroll
+</p>
+
+<p>
+  More text so you can scroll
+</p>
+
+<p>
+  More text so you can scroll
+</p>
+
+<p>
+  More text so you can scroll
+</p>
+
+<p>
+  More text so you can scroll
+</p>
+
+<p>
+  More text so you can scroll
+</p>
+
+<p>
+  More text so you can scroll
+</p>
+
+<p>
+  More text so you can scroll
+</p>
+
+<p>
+  More text so you can scroll
+</p>
+
+<p>
+  More text so you can scroll
+</p>
+
+<p>
+  More text so you can scroll
+</p>
+
+<p>
+  More text so you can scroll
+</p>
+
+<p>
+  More text so you can scroll
+</p>
+
+<p>
+  More text so you can scroll
+</p>
+
+<p>
+  More text so you can scroll
+</p>
+
+<p>
+  More text so you can scroll
+</p>
+
+</body>
+</html>
