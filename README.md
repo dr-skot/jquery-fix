@@ -46,7 +46,7 @@ if ($('.fixable').isFixed()) {
 }
 ```
 
-`isFixed()` returns true if any element in the selector are fixed. Want to know if *all* of them are fixed? Try `isFixed('all')`.
+`isFixed()` returns true if any element in the selector is fixed. Want to know if *all* of them are fixed? Try `isFixed('all')`.
 
 `fix('anyFixed?')` is a synonym for `isFixed()`. `fix('allFixed?')` is the same as `isFixed('all')`.
 
