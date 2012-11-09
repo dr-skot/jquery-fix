@@ -31,6 +31,8 @@ Unfix it.
 $('.fixable').unfix()
 ```
 
+`fix` can also take a boolean value; `fix(true)` is the same as `fix()`, and `fix(false)` is the same as `unfix()`.
+
 Toggle it.
 
 ```javascript
@@ -44,7 +46,9 @@ if ($('.fixable').isFixed()) {
 }
 ```
 
-`fix` can also take a boolean value; `fix(true)` is the same as `fix()`, and `fix(false)` is the same as `unfix()`. Any argument besides `'toggle'` is evaluated as a boolean.
+`isFixed()` returns true if any element in the selector are fixed. Want to know if *all* of them are fixed? Try `isFixed('all')`.
+
+`fix('anyFixed?')` is a synonym for `isFixed()`. `fix('allFixed?')` is the same as `isFixed('all')`.
 
 ## Example
 
