@@ -111,9 +111,14 @@
 	allFixed : function() {
 	    result = true;
 	    this.each(function() {
-		if (!$(this).data('fix')) result = false;
+		var $this = $(this);
+		if (!$this.data('fix') && !methods.isPlaceholder.apply($this)) result = false;
 	    });
 	    return result;
+	},
+
+	isPlaceholder : function() {
+	    return this.hasClass('fix-placeholder') || this.parents('.fix-placeholder').length > 0;
 	},
 
 	excludePlaceholders : function() {
@@ -136,11 +141,12 @@
 	if (arguments[0] === 'toggle') return methods.toggle.apply(this);
 	
 	// boolean inquiries
-	if (arguments[0] === 'anyFixed') return methods.anyFixed.apply(this);
-	if (arguments[0] === 'allFixed') return methods.allFixed.apply(this);
+	if (arguments[0] === 'anyFixed?') return methods.anyFixed.apply(this);
+	if (arguments[0] === 'allFixed?') return methods.allFixed.apply(this);
 
+	// TODO implement
 	// exclude placeholders
-	if (arguments[0] === 'excludePlaceholders') return methods.excludePlaceholders.apply(this);
+	// if (arguments[0] === 'excludePlaceholders') return methods.excludePlaceholders.apply(this);
 	
 	// otherwise fix or unfix depending on boolean value of arg 1
 	else return methods[arguments[0] ? 'fix' : 'unfix'].apply(this);
@@ -150,6 +156,10 @@
     // convenience synonym for fix(false)
     $.fn.unfix = function() {
 	return this.fix(false);
+    };
+
+    $.fn.isFixed = function() {
+	return this.fix(arguments[0] === "all" ? "allFixed?" : "anyFixed?");
     };
     
 })( jQuery );
