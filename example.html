@@ -1,101 +1,239 @@
 <html>
+
 <head>
 
 <style>
-  .first {
-    width: 100%;
-    height: 50px;
-    background: red;
-  }
-  .second {
-    width: 100%;
-    background: green;
-    margin: 
-  }
+  div { margin: 0 }
+  div.margined { margin: 10px; }
+  div.padded { padding: 5px; opacity: 0.6 }
+  div.example { border: 1px solid black; float: left }
+  div.example > div { background: green }
+  div.example > div.replace { background: red }
+  div.example > div.placeholder { background: blue; display: none }
 </style>
 
-<script src="http://code.jquery.com/jquery-1.7.2.min.js"></script>
+<!--<script src="http://code.jquery.com/jquery-1.7.2.min.js"></script>-->
+<script src="external/jquery-1.7.2.min.js"></script>
 <script src="jquery.fix.js"></script>
+<script>
+  var showing = false;
+  function showHide() {
+    if (showing) {
+      $(".replace").unfix();
+      showing = false;
+   } else {
+      $(".replace").fix();
+      showing = true;
+   }
+  }
+
+</script>
 
 </head>
 
 <body>
-<div class="first fixable">
-  first thing
-  <button onclick="$(this).parent().fix()">fix</button>
-  <button onclick="$(this).parent().unfix()">unfix</button>
-  <button onclick="$(this).parent().fix('toggle')">toggle</button>
+
+<div class="example">
+  <div class="margined">I have margins</div>
+  <div class="replace margined">I have margins</div>
+  <div class="margined">I have margins</div>
 </div>
-<div id="header" class="fixable">
-     
-            <p class="navbar">
-blah
-  </p>
-     
+
+<div class="example">
+  <div>I don't have margins</div>
+  <div class="replace margined">I have margins</div>
+  <div class="margined">I have margins</div>
 </div>
-<div class="second fixable">
-  both things
-  <button onclick="$('.fixable').fix(true)">fix</button>
-  <button onclick="$('.fixable').fix(false)">unfix</button>
-  <button onclick="$('.fixable').fix('toggle')">toggle</button>
+
+<div class="example">
+  <div class="margined">I have margins</div>
+  <div class="replace margined">I have margins</div>
+  <div>I don't have margins</div>
 </div>
-<div class="other-stuff">
-  scrollable stuff<br/>
-  scrollable stuff<br/>
-  scrollable stuff<br/>
-  scrollable stuff<br/>
-  scrollable stuff<br/>
-  scrollable stuff<br/>
-  scrollable stuff<br/>
-  scrollable stuff<br/>
-  scrollable stuff<br/>
-  scrollable stuff<br/>
-  scrollable stuff<br/>
-  scrollable stuff<br/>
-  scrollable stuff<br/>
-  scrollable stuff<br/>
-  scrollable stuff<br/>
-  scrollable stuff<br/>
-  scrollable stuff<br/>
-  scrollable stuff<br/>
-  scrollable stuff<br/>
-  scrollable stuff<br/>
-  scrollable stuff<br/>
-  scrollable stuff<br/>
-  scrollable stuff<br/>
-  scrollable stuff<br/>
-  scrollable stuff<br/>
-  scrollable stuff<br/>
-  scrollable stuff<br/>
-  scrollable stuff<br/>
-  scrollable stuff<br/>
-  scrollable stuff<br/>
-  scrollable stuff<br/>
-  scrollable stuff<br/>
-  scrollable stuff<br/>
-  scrollable stuff<br/>
-  scrollable stuff<br/>
-  scrollable stuff<br/>
-  scrollable stuff<br/>
-  scrollable stuff<br/>
-  scrollable stuff<br/>
-  scrollable stuff<br/>
-  scrollable stuff<br/>
-  scrollable stuff<br/>
-  scrollable stuff<br/>
-  scrollable stuff<br/>
-  scrollable stuff<br/>
-  scrollable stuff<br/>
-  scrollable stuff<br/>
-  scrollable stuff<br/>
-  scrollable stuff<br/>
-  scrollable stuff<br/>
-  scrollable stuff<br/>
-  scrollable stuff<br/>
-  scrollable stuff<br/>
-  scrollable stuff<br/>
-  scrollable stuff<br/>
-  scrollable stuff<br/>
+
+<div class="example">
+  <div>I don't have margins</div>
+  <div class="replace margined">I have margins</div>
+  <div>I don't have margins</div>
 </div>
+
+<div class="example">
+  <div class="margined">I have margins</div>
+  <div class="replace">I don't have margins</div>
+  <div class="margined">I have margins</div>
+</div>
+
+<div class="example">
+  <div>I don't have margins</div>
+  <div class="replace">I don't have margins</div>
+  <div class="margined">I have margins</div>
+</div>
+
+<div class="example">
+  <div class="margined">I have margins</div>
+  <div class="replace">I don't have margins</div>
+  <div>I don't have margins</div>
+</div>
+
+<div class="example">
+  <div>I don't have margins</div>
+  <div class="replace">I don't have margins</div>
+  <div>I don't have margins</div>
+</div>
+
+<div style="clear:both"></div>
+
+<hr>
+
+
+<div class="example">
+  <div class="padded">I have padding</div>
+  <div class="replace padded">I have padding</div>
+  <div class="padded">I have padding</div>
+</div>
+
+<div class="example">
+  <div>I don't have padding</div>
+  <div class="replace padded">I have padding</div>
+  <div class="padded">I have padding</div>
+</div>
+
+<div class="example">
+  <div class="padded">I have padding</div>
+  <div class="replace padded">I have padding</div>
+  <div>I don't have padding</div>
+</div>
+
+<div class="example">
+  <div>I don't have padding</div>
+  <div class="replace padded">I have padding</div>
+  <div>I don't have padding</div>
+</div>
+
+<div class="example">
+  <div class="padded">I have padding</div>
+  <div class="replace">I don't have padding</div>
+  <div class="padded">I have padding</div>
+</div>
+
+<div class="example">
+  <div>I don't have padding</div>
+  <div class="replace">I don't have padding</div>
+  <div class="padded">I have padding</div>
+</div>
+
+<div class="example">
+  <div class="padded">I have padding</div>
+  <div class="replace">I don't have padding</div>
+  <div>I don't have padding</div>
+</div>
+
+<div class="example">
+  <div>I don't have padding</div>
+  <div class="replace">I don't have padding</div>
+  <div>I don't have padding</div>
+</div>
+
+<div style="clear:both"></div>
+
+<hr>
+
+<div class="example">
+  <div><p>I'm in a &lt;p&gt; tag</p></div>
+  <div class="replace"><p>I'm in a &lt;p&gt; tag</p></div>
+  <div><p>I'm in a &lt;p&gt; tag</p></div>
+</div>
+
+<div class="example">
+  <div>I'm not in a &lt;p&gt; tag</div>
+  <div class="replace"><p>I'm in a &lt;p&gt; tag</p></div>
+  <div><p>I'm in a &lt;p&gt; tag</p></div>
+</div>
+
+<div class="example">
+  <div><p>I'm in a &lt;p&gt; tag</p></div>
+  <div class="replace"><p>I'm in a &lt;p&gt; tag</p></div>
+  <div>I'm not in a &lt;p&gt; tag</div>
+</div>
+
+<div class="example">
+  <div>I'm not in a &lt;p&gt; tag</div>
+  <div class="replace"><p>I'm in a &lt;p&gt; tag</p></div>
+  <div>I'm not in a &lt;p&gt; tag</div>
+</div>
+
+<div class="example">
+  <div><p>I'm in a &lt;p&gt; tag</p></div>
+  <div class="replace">I'm not in a &lt;p&gt; tag</div>
+  <div><p>I'm in a &lt;p&gt; tag</p></div>
+</div>
+
+<div class="example">
+  <div>I'm not in a &lt;p&gt; tag</div>
+  <div class="replace">I'm not in a &lt;p&gt; tag</div>
+  <div><p>I'm in a &lt;p&gt; tag</p></div>
+</div>
+
+<div class="example">
+  <div><p>I'm in a &lt;p&gt; tag</p></div>
+  <div class="replace">I'm not in a &lt;p&gt; tag</div>
+  <div>I'm not in a &lt;p&gt; tag</div>
+</div>
+
+<div class="example">
+  <div>I'm not in a &lt;p&gt; tag</div>
+  <div class="replace">I'm not in a &lt;p&gt; tag</div>
+  <div>I'm not in a &lt;p&gt; tag</div>
+</div>
+
+<div style="clear:both"></div>
+
+<hr>
+
+<p>
+<button onclick="showHide()">show placeholders</button>
+</p>
+
+<hr>
+
+<p>scroll me</p>
+<p>scroll me</p>
+<p>scroll me</p>
+<p>scroll me</p>
+<p>scroll me</p>
+<p>scroll me</p>
+<p>scroll me</p>
+<p>scroll me</p>
+<p>scroll me</p>
+<p>scroll me</p>
+<p>scroll me</p>
+<p>scroll me</p>
+<p>scroll me</p>
+<p>scroll me</p>
+<p>scroll me</p>
+<p>scroll me</p>
+<p>scroll me</p>
+<p>scroll me</p>
+<p>scroll me</p>
+<p>scroll me</p>
+<p>scroll me</p>
+<p>scroll me</p>
+<p>scroll me</p>
+<p>scroll me</p>
+<p>scroll me</p>
+<p>scroll me</p>
+<p>scroll me</p>
+<p>scroll me</p>
+<p>scroll me</p>
+<p>scroll me</p>
+<p>scroll me</p>
+<p>scroll me</p>
+<p>scroll me</p>
+<p>scroll me</p>
+<p>scroll me</p>
+<p>scroll me</p>
+<p>scroll me</p>
+
+
 </body>
 </html>
