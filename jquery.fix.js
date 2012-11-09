@@ -46,17 +46,23 @@
 	
 	fix : function() {
 	    // set explicit measurements first
-	    this.each(function() {
+	    return this.each(function() {
 		var $this = $(this);
-		var placeholder = $this.clone().addClass("fix-placeholder").css("opacity", 0);
-		$this.width($this.width()).height($this.height());
-		$this.css( { top: $this.offset().top,
-                             left: $this.offset().left,
-                             position: "fixed" });
-		placeholder.insertBefore($this);
-		$this.data("fix", { placeholder: placeholder });
-		adjustMargins(placeholder, $this);
-		matchChildren(placeholder, $this, adjustMargins);
+		// skip placeholders and their contents
+		var alreadyFixed = $this.data('fix') != null;
+		var inPlaceholder = $this.hasClass('fix-placeholder') ||
+		    $this.parents('.fix-placeholder').length > 0
+		if (!alreadyFixed && !inPlaceholder) { 
+		    var placeholder = $this.clone().addClass("fix-placeholder").css("opacity", 0);
+		    $this.width($this.width()).height($this.height());
+		    $this.css( { top: $this.offset().top,
+				 left: $this.offset().left,
+				 position: "fixed" });
+		    placeholder.insertBefore($this);
+		    $this.data("fix", { placeholder: placeholder });
+		    adjustMargins(placeholder, $this);
+		    matchChildren(placeholder, $this, adjustMargins);
+		}
 	    });
 	},
 	
@@ -75,7 +81,7 @@
 		    });
 		    placeholder.remove();
 		    matchChildren(placeholder, $this, matchMargins);
-		    $this.data("data", null);
+		    $this.data('fix', null);
 		}
 	    });
 	},
@@ -109,6 +115,15 @@
 	    });
 	    return result;
 	},
+
+	excludePlaceholders : function() {
+	    return $.grep(this, function() {
+		var $this = $(this);
+		var isPlaceholder = $this.hasClass('fix-placeholder');
+		var inPlaceholder = $this.parents('.fix-placeholder').length > 0;
+		return !isPlaceholder && !inPlaceholder;
+	    });
+	},
 	
     };
     
@@ -118,7 +133,14 @@
 	if (arguments.length == 0) return methods.fix.apply(this);
 	
 	// toggle if first argument is 'toggle'
-	if (arguments[0] === 'toggle') methods.toggle.apply(this);
+	if (arguments[0] === 'toggle') return methods.toggle.apply(this);
+	
+	// boolean inquiries
+	if (arguments[0] === 'anyFixed') return methods.anyFixed.apply(this);
+	if (arguments[0] === 'allFixed') return methods.allFixed.apply(this);
+
+	// exclude placeholders
+	if (arguments[0] === 'excludePlaceholders') return methods.excludePlaceholders.apply(this);
 	
 	// otherwise fix or unfix depending on boolean value of arg 1
 	else return methods[arguments[0] ? 'fix' : 'unfix'].apply(this);
