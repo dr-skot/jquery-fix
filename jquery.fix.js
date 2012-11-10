@@ -27,12 +27,12 @@
 	var diff = clone.offset().top - orig.offset().top;
 	if (diff != 0) {
 	    var margin = parseInt(clone.css('marginTop'));
-	    clone.css('marginTop', margin-diff);
+	    clone.css('marginTop', margin - diff);
 	}
 	diff = clone.offset().left - orig.offset().left;
 	if (diff != 0) {
 	    var margin = parseInt(clone.css('marginLeft'));
-	    clone.css('marginLeft', margin-diff);
+	    clone.css('marginLeft', margin - diff);
 	}
     };
 
@@ -53,13 +53,14 @@
 		var inPlaceholder = $this.hasClass('fix-placeholder') ||
 		    $this.parents('.fix-placeholder').length > 0
 		if (!alreadyFixed && !inPlaceholder) { 
+		    var style = $this.attr('style');
 		    var placeholder = $this.clone().addClass("fix-placeholder").css("opacity", 0);
 		    $this.width($this.width()).height($this.height());
 		    $this.css( { top: $this.offset().top,
 				 left: $this.offset().left,
 				 position: "fixed" });
 		    placeholder.insertBefore($this);
-		    $this.data("fix", { placeholder: placeholder });
+		    $this.data("fix", { style: style, placeholder: placeholder });
 		    adjustMargins(placeholder, $this);
 		    matchChildren(placeholder, $this, adjustMargins);
 		}
@@ -71,16 +72,10 @@
 		var $this = $(this);
 		var data = $this.data("fix");
 		if (data) {
+		    $this.attr('style', data.style || null),
 		    var placeholder = data.placeholder
-		    $this.css({			
-			width: placeholder.css('width'),
-			height: placeholder.css('height'),
-			top: placeholder.css('top'),
-			left: placeholder.css('left'),
-			position: placeholder.css('position'),
-		    });
-		    placeholder.remove();
 		    matchChildren(placeholder, $this, matchMargins);
+		    placeholder.remove();
 		    $this.data('fix', null);
 		}
 	    });
