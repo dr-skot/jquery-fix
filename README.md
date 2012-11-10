@@ -79,7 +79,7 @@ $('.fixable').fix()
 $('.fixable').unfix() // same as $('.fixable').not('.fix-placeholder').unfix();
 ```
 
-When you `unfix` an element, its css style attribute reverts to what it was before you called `fix`, and the placeholder is destroyed. If the margins of its subelements were adjusted, these are restored to their original values.
+When you `unfix` an element, its css style attribute reverts to what it was before you called `fix`, and the placeholder is destroyed. If the margins of any subelements were adjusted, these are restored to their original values.
 
 ## Caveats
 
