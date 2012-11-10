@@ -8,7 +8,7 @@
   div.padded { padding: 5px; opacity: 0.6 }
   div.example { border: 1px solid black; float: left }
   div.example > div { background: green }
-  div.example > div.replace { background: red }
+  div.example > div.fixable { background: red }
   div.example > div.placeholder { background: blue; display: none }
 </style>
 
@@ -19,10 +19,10 @@
   var showing = false;
   function showHide() {
     if (showing) {
-      $(".replace").unfix();
+      $(".fixable").unfix();
       showing = false;
    } else {
-      $(".replace").fix();
+      $(".fixable").fix();
       showing = true;
    }
   }
@@ -35,49 +35,49 @@
 
 <div class="example">
   <div class="margined">I have margins</div>
-  <div class="replace margined">I have margins</div>
+  <div class="fixable margined">I have margins</div>
   <div class="margined">I have margins</div>
 </div>
 
 <div class="example">
   <div>I don't have margins</div>
-  <div class="replace margined">I have margins</div>
+  <div class="fixable margined">I have margins</div>
   <div class="margined">I have margins</div>
 </div>
 
 <div class="example">
   <div class="margined">I have margins</div>
-  <div class="replace margined">I have margins</div>
+  <div class="fixable margined">I have margins</div>
   <div>I don't have margins</div>
 </div>
 
 <div class="example">
   <div>I don't have margins</div>
-  <div class="replace margined">I have margins</div>
+  <div class="fixable margined">I have margins</div>
   <div>I don't have margins</div>
-</div>
-
-<div class="example">
-  <div class="margined">I have margins</div>
-  <div class="replace">I don't have margins</div>
-  <div class="margined">I have margins</div>
-</div>
-
-<div class="example">
-  <div>I don't have margins</div>
-  <div class="replace">I don't have margins</div>
-  <div class="margined">I have margins</div>
 </div>
 
 <div class="example">
   <div class="margined">I have margins</div>
-  <div class="replace">I don't have margins</div>
+  <div class="fixable">I don't have margins</div>
+  <div class="margined">I have margins</div>
+</div>
+
+<div class="example">
+  <div>I don't have margins</div>
+  <div class="fixable">I don't have margins</div>
+  <div class="margined">I have margins</div>
+</div>
+
+<div class="example">
+  <div class="margined">I have margins</div>
+  <div class="fixable">I don't have margins</div>
   <div>I don't have margins</div>
 </div>
 
 <div class="example">
   <div>I don't have margins</div>
-  <div class="replace">I don't have margins</div>
+  <div class="fixable">I don't have margins</div>
   <div>I don't have margins</div>
 </div>
 
@@ -88,49 +88,49 @@
 
 <div class="example">
   <div class="padded">I have padding</div>
-  <div class="replace padded">I have padding</div>
+  <div class="fixable padded">I have padding</div>
   <div class="padded">I have padding</div>
 </div>
 
 <div class="example">
   <div>I don't have padding</div>
-  <div class="replace padded">I have padding</div>
+  <div class="fixable padded">I have padding</div>
   <div class="padded">I have padding</div>
 </div>
 
 <div class="example">
   <div class="padded">I have padding</div>
-  <div class="replace padded">I have padding</div>
+  <div class="fixable padded">I have padding</div>
   <div>I don't have padding</div>
 </div>
 
 <div class="example">
   <div>I don't have padding</div>
-  <div class="replace padded">I have padding</div>
+  <div class="fixable padded">I have padding</div>
   <div>I don't have padding</div>
-</div>
-
-<div class="example">
-  <div class="padded">I have padding</div>
-  <div class="replace">I don't have padding</div>
-  <div class="padded">I have padding</div>
-</div>
-
-<div class="example">
-  <div>I don't have padding</div>
-  <div class="replace">I don't have padding</div>
-  <div class="padded">I have padding</div>
 </div>
 
 <div class="example">
   <div class="padded">I have padding</div>
-  <div class="replace">I don't have padding</div>
+  <div class="fixable">I don't have padding</div>
+  <div class="padded">I have padding</div>
+</div>
+
+<div class="example">
+  <div>I don't have padding</div>
+  <div class="fixable">I don't have padding</div>
+  <div class="padded">I have padding</div>
+</div>
+
+<div class="example">
+  <div class="padded">I have padding</div>
+  <div class="fixable">I don't have padding</div>
   <div>I don't have padding</div>
 </div>
 
 <div class="example">
   <div>I don't have padding</div>
-  <div class="replace">I don't have padding</div>
+  <div class="fixable">I don't have padding</div>
   <div>I don't have padding</div>
 </div>
 
@@ -140,58 +140,61 @@
 
 <div class="example">
   <div><p>I'm in a &lt;p&gt; tag</p></div>
-  <div class="replace"><p>I'm in a &lt;p&gt; tag</p></div>
+  <div class="fixable"><p>I'm in a &lt;p&gt; tag</p></div>
   <div><p>I'm in a &lt;p&gt; tag</p></div>
 </div>
 
 <div class="example">
   <div>I'm not in a &lt;p&gt; tag</div>
-  <div class="replace"><p>I'm in a &lt;p&gt; tag</p></div>
+  <div class="fixable"><p>I'm in a &lt;p&gt; tag</p></div>
   <div><p>I'm in a &lt;p&gt; tag</p></div>
 </div>
 
 <div class="example">
   <div><p>I'm in a &lt;p&gt; tag</p></div>
-  <div class="replace"><p>I'm in a &lt;p&gt; tag</p></div>
+  <div class="fixable"><p>I'm in a &lt;p&gt; tag</p></div>
   <div>I'm not in a &lt;p&gt; tag</div>
 </div>
 
 <div class="example">
   <div>I'm not in a &lt;p&gt; tag</div>
-  <div class="replace"><p>I'm in a &lt;p&gt; tag</p></div>
+  <div class="fixable"><p>I'm in a &lt;p&gt; tag</p></div>
   <div>I'm not in a &lt;p&gt; tag</div>
-</div>
-
-<div class="example">
-  <div><p>I'm in a &lt;p&gt; tag</p></div>
-  <div class="replace">I'm not in a &lt;p&gt; tag</div>
-  <div><p>I'm in a &lt;p&gt; tag</p></div>
-</div>
-
-<div class="example">
-  <div>I'm not in a &lt;p&gt; tag</div>
-  <div class="replace">I'm not in a &lt;p&gt; tag</div>
-  <div><p>I'm in a &lt;p&gt; tag</p></div>
 </div>
 
 <div class="example">
   <div><p>I'm in a &lt;p&gt; tag</p></div>
-  <div class="replace">I'm not in a &lt;p&gt; tag</div>
+  <div class="fixable">I'm not in a &lt;p&gt; tag</div>
+  <div><p>I'm in a &lt;p&gt; tag</p></div>
+</div>
+
+<div class="example">
+  <div>I'm not in a &lt;p&gt; tag</div>
+  <div class="fixable">I'm not in a &lt;p&gt; tag</div>
+  <div><p>I'm in a &lt;p&gt; tag</p></div>
+</div>
+
+<div class="example">
+  <div><p>I'm in a &lt;p&gt; tag</p></div>
+  <div class="fixable">I'm not in a &lt;p&gt; tag</div>
   <div>I'm not in a &lt;p&gt; tag</div>
 </div>
 
 <div class="example">
   <div>I'm not in a &lt;p&gt; tag</div>
-  <div class="replace">I'm not in a &lt;p&gt; tag</div>
+  <div class="fixable">I'm not in a &lt;p&gt; tag</div>
   <div>I'm not in a &lt;p&gt; tag</div>
 </div>
 
 <div style="clear:both"></div>
 
 <hr>
+
+<h2>fix/unfix the red things:</h2>
 
 <p>
-<button onclick="showHide()">show placeholders</button>
+<button onclick="$('.fixable').fix()">fix</button>
+<button onclick="$('.fixable').unfix()">unfix</button>
 </p>
 
 <hr>

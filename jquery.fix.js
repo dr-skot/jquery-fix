@@ -72,8 +72,8 @@
 		var $this = $(this);
 		var data = $this.data("fix");
 		if (data) {
-		    $this.attr('style', data.style || null),
-		    var placeholder = data.placeholder
+		    $this.attr('style', data.style || null);
+		    var placeholder = data.placeholder;
 		    matchChildren(placeholder, $this, matchMargins);
 		    placeholder.remove();
 		    $this.data('fix', null);
