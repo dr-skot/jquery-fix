@@ -54,15 +54,23 @@
 		    $this.parents('.fix-placeholder').length > 0
 		if (!alreadyFixed && !inPlaceholder) { 
 		    var style = $this.attr('style');
-		    var placeholder = $this.clone().addClass("fix-placeholder").css("opacity", 0);
-		    $this.width($this.width()).height($this.height());
+		    var placeholder = $this.clone().addClass("fix-placeholder").css({opacity: 0});
+		    placeholder.find('*').addClass("fix-placeholder"); // all subelements have this class
+		    // lift the original out
 		    $this.css( { top: $this.offset().top,
 				 left: $this.offset().left,
-				 position: "fixed" });
+				 width: $this.width(),
+				 height: $this.height(),
+				 position: "fixed",
+			         zIndex: 10000,
+			       });
+		    // put the placeholder in
 		    placeholder.insertBefore($this);
-		    $this.data("fix", { style: style, placeholder: placeholder });
+		    // adjust the margins in the original until its elements line up with placeholder
 		    adjustMargins(placeholder, $this);
 		    matchChildren(placeholder, $this, adjustMargins);
+		    // save the data
+		    $this.data("fix", { style: style, placeholder: placeholder });
 		}
 	    });
 	},

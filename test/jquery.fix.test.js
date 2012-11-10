@@ -58,6 +58,12 @@
 	equal($('.fixable').length, 1, "placeholder disappears after unfix()");
 	equal(fixables.css('position'), 'static', "position reverts to static after unfix()");
     });
+
+    test('subelements of placeholder have class "fix-placeholder"', function() {
+	$('.fixable').html('<p class="inner-thing">inner thing</p>');
+	$('.fixable').fix();
+	ok($('.inner-thing').hasClass('fix-placeholder'), "inner thing has class fix-placeholder");
+    });
     
     test('cannot fix a placeholder', function() {
 	$('.fixable').fix();

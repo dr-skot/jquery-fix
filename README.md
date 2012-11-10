@@ -56,9 +56,34 @@ if ($('.fixable').isFixed()) {
 
 ## Under the hood
 
-Basically `fix` sets the element's css `position` to `'fixed'` and explictly sets its `top`, `left`, `width` and `height` so that it retains the location and size it had when it wasn't fixed. But this pulls the element out of the document flow. To prevent the rest of the document from reflowing, `fix` inserts a placeholder into the DOM, just before the element being fixed. The placeholder is a clone of the original element with an opacity of 0. So while you're traversing the DOM keep in mind that this placeholder will be there if you've called `fix`. It's assigned a class of `fix-placeholder`, so you can exclude it from your selectors if you need to.
+Basically `fix` just sets an element's css `position` to `'fixed'`. But because this lifts the element out of the document flow, various adjustments have to be made to insure that fixing the element doesn't change its appearance, or disturb the rest of the page.
+
+_Location and size._ `fix` locks the element's current location and size by explictly setting css `top`, `left`, `width` and `height` to the appropriate values. It also sets `z-index` to 10000.
+
+_Margins._ Collapsed margins may uncollapse when an element is pulled out of the document flow, causing various positioning errors. `fix` corrects this by adjusting margins on the element and its subelements as necessary.
+
+_Placeholder._ To prevent the rest of the document from reflowing when the element is lifted out, `fix` inserts a placeholder into the DOM. The placeholder is a clone of the original element with an opacity of 0. So while you're traversing the DOM keep in mind that this placeholder will be there if you've called `fix`. It and all its subelements are assigned a class of `fix-placeholder`, so you can exclude it from your selectors if you need to:
+
+```javascript
+$('.fixable').length;  // call this N
+$('.fixable').fix();
+$('.fixable').length; // 2 * N, because of placeholders
+$('.fixable').not('.fix-placeholder').length; // N
+```
+
+Note that the `fix` and `unfix` automatically ignore these placeholders, so it is okay to do this:
+
+```javascript
+$('.fixable').fix()
+...
+$('.fixable').unfix() // same as $('.fixable').not('.fix-placeholder').unfix();
+```
+
+## Caveats
 
 `fix` stores data in `$(element).data('fix')`. If you don't want to break it, don't mess with this data.
+
+Also `fix` assumes no side effects will be generated when adding the `'fix-placeholder'` class, so do not associate any css styles with this class name.
 
 ## Authors
 
