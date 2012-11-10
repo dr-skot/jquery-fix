@@ -58,11 +58,11 @@ if ($('.fixable').isFixed()) {
 
 Basically `fix` just sets an element's css `position` to `'fixed'`. But because this lifts the element out of the document flow, various adjustments have to be made to insure that fixing the element doesn't change its appearance, or disturb the rest of the page.
 
-_Location and size._ `fix` locks the element's current location and size by explictly setting css `top`, `left`, `width` and `height` to the appropriate values. It also sets `z-index` to 10000.
+**Location and size.** `fix` locks the element's current location and size by explictly setting css `top`, `left`, `width` and `height` to the appropriate values. It also sets `z-index` to 10000.
 
-_Margins._ Collapsed margins may uncollapse when an element is pulled out of the document flow, causing various positioning errors. `fix` corrects this by adjusting margins on the element and its subelements as necessary.
+**Margins.** Collapsed margins may uncollapse when an element is pulled out of the document flow, causing various positioning errors. `fix` corrects this by adjusting margins on the element and its subelements as necessary.
 
-_Placeholder._ To prevent the rest of the document from reflowing when the element is lifted out, `fix` inserts a placeholder into the DOM. The placeholder is a clone of the original element with an opacity of 0. So while you're traversing the DOM keep in mind that this placeholder will be there if you've called `fix`. It and all its subelements are assigned a class of `fix-placeholder`, so you can exclude it from your selectors if you need to:
+**Placeholder.** To prevent the rest of the document from reflowing when the element is lifted out, `fix` inserts a placeholder into the DOM. The placeholder is a clone of the original element with an opacity of 0. So while you're traversing the DOM keep in mind that this placeholder will be there if you've called `fix`. It and all its subelements are assigned a class of `fix-placeholder`, so you can exclude it from your selectors if you need to:
 
 ```javascript
 $('.fixable').length;  // call this N
@@ -78,6 +78,8 @@ $('.fixable').fix()
 ...
 $('.fixable').unfix() // same as $('.fixable').not('.fix-placeholder').unfix();
 ```
+
+When you `unfix` an element, its css style attribute reverts to what it was before you called `fix`, and the placeholder is destroyed.
 
 ## Caveats
 
