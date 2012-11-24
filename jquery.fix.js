@@ -1,5 +1,6 @@
 /**
  * jquery-fix 0.1.0
+ * https://github.com/dr-skot/jquery-fix
  * 
  * Fix and unfix the position of DOM elements
  *
