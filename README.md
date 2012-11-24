@@ -71,7 +71,7 @@ $('.fixable').length; // 2 * N, because of placeholders
 $('.fixable').not('.fix-placeholder').length; // N
 ```
 
-Note that the `fix` and `unfix` automatically ignore these placeholders, so it is okay to do this:
+Note that `fix` and `unfix` automatically ignore these placeholders, so it is okay to do this:
 
 ```javascript
 $('.fixable').fix()
